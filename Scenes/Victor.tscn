@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cynniwa7ggani"]
 
-[ext_resource type="Texture2D" uid="uid://3kthyf1lfuep" path="res://Sprites/Sprite-0001.png" id="1_tdg1y"]
+[ext_resource type="Texture2D" uid="uid://3kthyf1lfuep" path="res://Sprites/pixel.png" id="1_tdg1y"]
 
 [node name="Node2D" type="Node2D"]
 

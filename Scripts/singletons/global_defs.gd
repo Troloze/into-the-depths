@@ -11,6 +11,7 @@ var max_pos:float
 var cause_of_death
 
 func death():
+	AngelQuestionHandler.reset()
 	get_tree().change_scene_to_packed(GAME_OVER)
 
 func glory():

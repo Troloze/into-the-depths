@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://n5k5w1okmqg4"]
 
-[ext_resource type="Texture2D" uid="uid://3kthyf1lfuep" path="res://Sprites/Sprite-0001.png" id="1_1kfkr"]
+[ext_resource type="Texture2D" uid="uid://3kthyf1lfuep" path="res://Sprites/pixel.png" id="1_1kfkr"]
 [ext_resource type="Script" uid="uid://7rw6h2ida3q" path="res://Scripts/game_over_placeholder.gd" id="1_p7vyk"]
 
 [node name="Node2D" type="Node2D"]
