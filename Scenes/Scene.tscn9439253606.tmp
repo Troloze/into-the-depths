@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://baoewftfcol6g"]
+
+[ext_resource type="Script" uid="uid://dum40idbnslov" path="res://Scripts/infinite_rope.gd" id="2_1o454"]
+[ext_resource type="Script" uid="uid://csascovhhwwyb" path="res://Scenes/parallax_instance.gd" id="2_o8g73"]
+[ext_resource type="PackedScene" uid="uid://d3xw6xlnx0x1v" path="res://Scenes/player.tscn" id="2_s3lxa"]
+[ext_resource type="Texture2D" uid="uid://bhvsvg4qmtqbu" path="res://Sprites/Ceiling.png" id="3_v3fvj"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Rope" type="Node2D" parent="World"]
+script = ExtResource("2_1o454")
+rope_scale = 0.7
+
+[node name="Ceiling" type="Node2D" parent="World"]
+position = Vector2(0, 200)
+
+[node name="1" type="Node2D" parent="World/Ceiling"]
+z_index = -1
+script = ExtResource("2_o8g73")
+distance_to_camera = 1.0
+metadata/_custom_type_script = "uid://csascovhhwwyb"
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Ceiling/1"]
+texture_repeat = 2
+scale = Vector2(15.25, 0.4)
+texture = ExtResource("3_v3fvj")
+
+[node name="3" type="Node2D" parent="World/Ceiling"]
+z_index = -3
+script = ExtResource("2_o8g73")
+distance_to_camera = 4.0
+metadata/_custom_type_script = "uid://csascovhhwwyb"
+
+[node name="Sprite2D3" type="Sprite2D" parent="World/Ceiling/3"]
+texture_repeat = 2
+scale = Vector2(15.25, 0.4)
+texture = ExtResource("3_v3fvj")
+
+[node name="5" type="Node2D" parent="World/Ceiling"]
+z_index = -5
+script = ExtResource("2_o8g73")
+distance_to_camera = 6.5
+metadata/_custom_type_script = "uid://csascovhhwwyb"
+
+[node name="Sprite2D5" type="Sprite2D" parent="World/Ceiling/5"]
+texture_repeat = 2
+scale = Vector2(15.25, 0.4)
+texture = ExtResource("3_v3fvj")
+
+[node name="Player" parent="." instance=ExtResource("2_s3lxa")]

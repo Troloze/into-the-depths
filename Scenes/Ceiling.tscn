@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://c52xv51fru5qj"]
+
+[ext_resource type="Script" uid="uid://csascovhhwwyb" path="res://Scripts/parallax_instance.gd" id="1_gsrwd"]
+[ext_resource type="Texture2D" uid="uid://bhvsvg4qmtqbu" path="res://Sprites/Ceiling.png" id="2_bhf1k"]
+
+[node name="Ceiling" type="Node2D"]
+
+[node name="1" type="Node2D" parent="."]
+z_index = -1
+script = ExtResource("1_gsrwd")
+distance_to_camera = 1.0
+metadata/_custom_type_script = "uid://csascovhhwwyb"
+
+[node name="Sprite2D" type="Sprite2D" parent="1"]
+texture_repeat = 2
+scale = Vector2(15.25, 0.4)
+texture = ExtResource("2_bhf1k")
+
+[node name="2" type="Node2D" parent="."]
+z_index = -3
+script = ExtResource("1_gsrwd")
+distance_to_camera = 4.5
+metadata/_custom_type_script = "uid://csascovhhwwyb"
+
+[node name="Sprite2D" type="Sprite2D" parent="2"]
+modulate = Color(0.556953, 0.556953, 0.556953, 1)
+texture_repeat = 2
+scale = Vector2(15.25, 0.4)
+texture = ExtResource("2_bhf1k")
+
+[node name="3" type="Node2D" parent="."]
+z_index = -5
+script = ExtResource("1_gsrwd")
+distance_to_camera = 6.5
+metadata/_custom_type_script = "uid://csascovhhwwyb"
+
+[node name="Sprite2D" type="Sprite2D" parent="3"]
+modulate = Color(0.233925, 0.233925, 0.233925, 1)
+texture_repeat = 2
+scale = Vector2(15.25, 0.4)
+texture = ExtResource("2_bhf1k")
+
+[node name="4" type="Node2D" parent="."]
+modulate = Color(0.0846899, 0.0846899, 0.0846899, 1)
+z_index = -6
+script = ExtResource("1_gsrwd")
+distance_to_camera = 7.2
+metadata/_custom_type_script = "uid://csascovhhwwyb"
+
+[node name="Sprite2D" type="Sprite2D" parent="4"]
+modulate = Color(0.233925, 0.233925, 0.233925, 1)
+texture_repeat = 2
+scale = Vector2(15.25, 0.4)
+texture = ExtResource("2_bhf1k")
