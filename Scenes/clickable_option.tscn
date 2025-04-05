@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwpf8lnsi2h5u"]
+
+[ext_resource type="Script" uid="uid://cphl8kac31wal" path="res://Sprites/clickable_option.gd" id="1_1xmsm"]
+
+[node name="ClickableOption" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_1xmsm")
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(120, 80)
+layout_mode = 0
+offset_right = 280.0
+offset_bottom = 80.0
+action_mode = 0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

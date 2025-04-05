@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://kivdgy6w6715"]
+
+[ext_resource type="Script" uid="uid://u57lpsxi5wyc" path="res://Scripts/angel.gd" id="1_fqksc"]
+[ext_resource type="Texture2D" uid="uid://cj3egsvhxg5aw" path="res://Sprites/Angel.png" id="2_pnmup"]
+
+[sub_resource type="Animation" id="Animation_fqksc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7in55"]
+resource_name = "spawn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.366667, 0.966667),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"prepare_questions"
+}, {
+"args": [],
+"method": &"generate_answer_boxes"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pnmup"]
+_data = {
+&"RESET": SubResource("Animation_fqksc"),
+&"spawn": SubResource("Animation_7in55")
+}
+
+[node name="Angel" type="Node2D"]
+script = ExtResource("1_fqksc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("2_pnmup")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_pnmup")
+}

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://baoewftfcol6g"]
+[gd_scene load_steps=5 format=3 uid="uid://baoewftfcol6g"]
 
 [ext_resource type="Script" uid="uid://dpfjbcxc8sntu" path="res://Scripts/world_config.gd" id="1_yprpe"]
 [ext_resource type="Script" uid="uid://dum40idbnslov" path="res://Scripts/infinite_rope.gd" id="2_ybmw1"]
 [ext_resource type="PackedScene" uid="uid://d3xw6xlnx0x1v" path="res://Scenes/player.tscn" id="3_321ql"]
+[ext_resource type="PackedScene" uid="uid://kivdgy6w6715" path="res://Scenes/angel.tscn" id="4_ybmw1"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -12,5 +13,8 @@ script = ExtResource("1_yprpe")
 [node name="Rope" type="Node2D" parent="World"]
 script = ExtResource("2_ybmw1")
 rope_scale = 0.7
+
+[node name="Angel" parent="World" instance=ExtResource("4_ybmw1")]
+position = Vector2(-30, -10)
 
 [node name="Player" parent="." instance=ExtResource("3_321ql")]
