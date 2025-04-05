@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://baoewftfcol6g"]
+
+[ext_resource type="AudioStream" uid="uid://c6qaklmwen15d" path="res://Tracks/placeholder.ogg" id="1_jp0d8"]
+[ext_resource type="Script" uid="uid://dum40idbnslov" path="res://Scripts/infinite_rope.gd" id="2_1o454"]
+[ext_resource type="Script" uid="uid://d3o7vnw3b7jib" path="res://Scripts/player.gd" id="2_o8g73"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Rope" type="Node2D" parent="World"]
+script = ExtResource("2_1o454")
+rope_scale = 0.7
+
+[node name="Player" type="Node2D" parent="."]
+script = ExtResource("2_o8g73")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="Player"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("1_jp0d8")
+volume_db = -21.073
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
