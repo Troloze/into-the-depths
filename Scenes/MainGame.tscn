@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://baoewftfcol6g"]
+
+[ext_resource type="Script" uid="uid://dpfjbcxc8sntu" path="res://Scripts/world_config.gd" id="1_yprpe"]
+[ext_resource type="Script" uid="uid://dum40idbnslov" path="res://Scripts/infinite_rope.gd" id="2_ybmw1"]
+[ext_resource type="PackedScene" uid="uid://d3xw6xlnx0x1v" path="res://Scenes/player.tscn" id="3_321ql"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="World" type="Node2D" parent="."]
+script = ExtResource("1_yprpe")
+
+[node name="Rope" type="Node2D" parent="World"]
+script = ExtResource("2_ybmw1")
+rope_scale = 0.7
+
+[node name="Player" parent="." instance=ExtResource("3_321ql")]

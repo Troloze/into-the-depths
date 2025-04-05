@@ -11,17 +11,20 @@ config_version=5
 [application]
 
 config/name="Into the Depths"
-config/version="0.0.01a"
-run/main_scene="uid://baoewftfcol6g"
+config/version="0.0.02a"
+run/main_scene="uid://n5k5w1okmqg4"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 PlayerStatus="*res://Scripts/singletons/player_status.gd"
+GlobalDefs="*res://Scripts/singletons/global_defs.gd"
 
 [display]
 
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/stretch/mode="viewport"
 
 [input]
