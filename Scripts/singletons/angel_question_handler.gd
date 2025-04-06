@@ -41,6 +41,7 @@ const OPTIONS:Array[Array] = [
 var question_count:int
 var answers:Array[int] = []
 var answered_id:Array[int] = []
+var wrong_answers:Array[Array] = []
 var last_3_answered:Array[int] = [-1, -1, -1]
 var l3a_pos = 0
 var answered_count:int = 0
@@ -49,6 +50,7 @@ func _init() -> void:
 	question_count = len(QUESTIONS)
 	for i in range(0, question_count):
 		answers.append(-1)
+		wrong_answers.append([])
 
 func reset():
 	answers = []
@@ -62,13 +64,16 @@ func reset():
 func get_question(is_evil:bool = false)->Dictionary:
 	var q
 	var ans
+	print (answered_count, is_evil)
 	if is_evil:
+		if (answered_count < 4): 
+			return {"Question": -1, "Answer": [-1, -1, -1, -1], "Correct": -1}
 		q = randi() % len(answered_id)
-		while q in last_3_answered:
+		while answered_id[q] in last_3_answered:
 			q = (q + 1) % len(answered_id)
-		ans = get_answers(q)
-		update_last_answer(q)
-		return {"Question": q, "Answer": ans, "Correct": answers[q]}
+		ans = get_answers(answered_id[q])
+		update_last_answer(answered_id[q])
+		return {"Question": answered_id[q], "Answer": ans, "Correct": answers[answered_id[q]]}
 	if answered_count < 4:
 		q = randi() % question_count
 		while answers[q] != -1:
@@ -113,7 +118,7 @@ func get_question_string(id:int)->String:
 func get_answer_string(q_id:int, a_id:int)->String:
 	return OPTIONS[q_id][a_id]
 
-func set_answer(q_id:int, a_id:int):
+func set_answer(q_id:int, a_id:int, is_evil:bool=false):
 	answered_count += 1
 	answered_id.append(q_id)
 	answers[q_id] = a_id

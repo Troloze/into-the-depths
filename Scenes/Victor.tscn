@@ -1,6 +1,69 @@
-[gd_scene load_steps=2 format=3 uid="uid://cynniwa7ggani"]
+[gd_scene load_steps=8 format=3 uid="uid://cynniwa7ggani"]
 
 [ext_resource type="Texture2D" uid="uid://3kthyf1lfuep" path="res://Sprites/pixel.png" id="1_tdg1y"]
+[ext_resource type="Texture2D" uid="uid://3ubgrwxta6fr" path="res://Sprites/End.png" id="2_r6cll"]
+[ext_resource type="Texture2D" uid="uid://cns2pupeh7n2j" path="res://Sprites/Go Back.png" id="3_wnmu4"]
+[ext_resource type="Script" uid="uid://daghp4kheni66" path="res://Scripts/scene_changing_button.gd" id="4_fl1a3"]
+
+[sub_resource type="Animation" id="Animation_tv8gt"]
+resource_name = "Fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect3:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect3:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_r6cll"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect3:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect3:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fdpf5"]
+_data = {
+&"Fade": SubResource("Animation_tv8gt"),
+&"RESET": SubResource("Animation_r6cll")
+}
 
 [node name="Node2D" type="Node2D"]
 
@@ -11,26 +74,29 @@ modulate = Color(0, 0, 0, 1)
 scale = Vector2(3000, 3000)
 texture = ExtResource("1_tdg1y")
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -256.0
-offset_right = 256.0
-offset_bottom = 256.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("2_r6cll")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
-layout_mode = 0
-offset_right = 512.0
-offset_bottom = 512.0
-scale = Vector2(0.984122, 0.962617)
-text = "You win!"
-fit_content = true
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -142.0
+offset_top = 148.0
+offset_right = 124.0
+offset_bottom = 255.0
+pivot_offset = Vector2(133, 53.5)
+texture = ExtResource("3_wnmu4")
+script = ExtResource("4_fl1a3")
+next_scene = "Menu"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fdpf5")
+}
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+visible = false
+modulate = Color(0, 0, 0, 0)
+offset_left = -1000.0
+offset_top = -1000.0
+offset_right = 1000.0
+offset_bottom = 1000.0
+texture = ExtResource("1_tdg1y")

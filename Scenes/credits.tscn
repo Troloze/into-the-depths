@@ -1,0 +1,139 @@
+[gd_scene load_steps=10 format=3 uid="uid://cqlhxkctrupe2"]
+
+[ext_resource type="Texture2D" uid="uid://3kthyf1lfuep" path="res://Sprites/pixel.png" id="1_ccovl"]
+[ext_resource type="Texture2D" uid="uid://m01gdm4xivfw" path="res://Sprites/credits_screen.png" id="2_1bamb"]
+[ext_resource type="Texture2D" uid="uid://cns2pupeh7n2j" path="res://Sprites/Go Back.png" id="3_xelri"]
+[ext_resource type="Script" uid="uid://daghp4kheni66" path="res://Scripts/scene_changing_button.gd" id="4_xelri"]
+
+[sub_resource type="GDScript" id="GDScript_ccovl"]
+resource_name = "FadeIn"
+script/source = "extends Node2D
+
+func _ready():
+	get_node(\"AnimationPlayer\").play(\"In\")
+"
+
+[sub_resource type="Animation" id="Animation_uah1q"]
+resource_name = "Fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect3:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect3:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_7emq5"]
+resource_name = "In"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect3:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect3:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_803yc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect3:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect3:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1wbrc"]
+_data = {
+&"Fade": SubResource("Animation_uah1q"),
+&"In": SubResource("Animation_7emq5"),
+&"RESET": SubResource("Animation_803yc")
+}
+
+[node name="Node2D" type="Node2D"]
+script = SubResource("GDScript_ccovl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = -100
+scale = Vector2(4000, 4000)
+texture = ExtResource("1_ccovl")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("2_1bamb")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -142.0
+offset_top = 81.0
+offset_right = 124.0
+offset_bottom = 188.0
+pivot_offset = Vector2(133, 53.5)
+texture = ExtResource("3_xelri")
+script = ExtResource("4_xelri")
+next_scene = "Menu"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1wbrc")
+}
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = -1000.0
+offset_top = -1000.0
+offset_right = 1000.0
+offset_bottom = 1000.0
+texture = ExtResource("1_ccovl")

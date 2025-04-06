@@ -16,7 +16,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_vgqql"]
@@ -79,12 +79,13 @@ script = ExtResource("1_cvnsp")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_6t5aa")
-volume_db = -21.073
+volume_db = -12.641
+autoplay = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="StartleTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 1.5
 one_shot = true
 
 [node name="MinDropTimer" type="Timer" parent="."]
@@ -105,8 +106,20 @@ libraries = {
 }
 
 [node name="Fade" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0)
+modulate = Color(0, 0, 0, 1)
 z_index = 100
+scale = Vector2(2000, 2000)
+texture = ExtResource("3_6t5aa")
+
+[node name="Fade2" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = -4096
+scale = Vector2(2000, 2000)
+texture = ExtResource("3_6t5aa")
+
+[node name="Fade3" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.443137)
+z_index = 99
 scale = Vector2(2000, 2000)
 texture = ExtResource("3_6t5aa")
 
