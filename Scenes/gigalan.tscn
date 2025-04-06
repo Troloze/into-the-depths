@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ugbsn8swxu4b"]
+
+[ext_resource type="Script" uid="uid://3q633kp2savf" path="res://Scripts/gigalan.gd" id="1_r65q0"]
+
+[node name="Gigalan" type="Node2D"]
+script = ExtResource("1_r65q0")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.2
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

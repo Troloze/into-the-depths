@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c52xv51fru5qj"]
+[gd_scene load_steps=6 format=3 uid="uid://c52xv51fru5qj"]
 
 [ext_resource type="Script" uid="uid://csascovhhwwyb" path="res://Scripts/parallax_instance.gd" id="1_gsrwd"]
 [ext_resource type="Texture2D" uid="uid://bhvsvg4qmtqbu" path="res://Sprites/Ceiling.png" id="2_bhf1k"]
+[ext_resource type="Texture2D" uid="uid://bfga0s7jpjdnf" path="res://Sprites/Tutorial.png" id="3_bhf1k"]
+[ext_resource type="Texture2D" uid="uid://bnj06x8so1dt8" path="res://Sprites/Tutorial 2.png" id="4_0iivq"]
+[ext_resource type="Texture2D" uid="uid://3kthyf1lfuep" path="res://Sprites/pixel.png" id="5_qlqph"]
 
 [node name="Ceiling" type="Node2D"]
 
@@ -13,8 +16,22 @@ metadata/_custom_type_script = "uid://csascovhhwwyb"
 
 [node name="Sprite2D" type="Sprite2D" parent="1"]
 texture_repeat = 2
-scale = Vector2(15.25, 0.4)
+position = Vector2(0, -355.83)
+scale = Vector2(15.25, 1.52778)
 texture = ExtResource("2_bhf1k")
+
+[node name="Sprite2D2" type="Sprite2D" parent="1"]
+position = Vector2(-60, -618)
+texture = ExtResource("3_bhf1k")
+
+[node name="Sprite2D3" type="Sprite2D" parent="1"]
+position = Vector2(-94.31, 53.49)
+texture = ExtResource("4_0iivq")
+
+[node name="Sprite2D4" type="Sprite2D" parent="1"]
+position = Vector2(0, -2251)
+scale = Vector2(10000, 2000)
+texture = ExtResource("5_qlqph")
 
 [node name="2" type="Node2D" parent="."]
 z_index = -3

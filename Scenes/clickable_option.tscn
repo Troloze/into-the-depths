@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cwpf8lnsi2h5u"]
 
-[ext_resource type="Script" uid="uid://cphl8kac31wal" path="res://Sprites/clickable_option.gd" id="1_1xmsm"]
+[ext_resource type="Script" uid="uid://cphl8kac31wal" path="res://Scripts/clickable_option.gd" id="1_1xmsm"]
 
 [node name="ClickableOption" type="Control"]
 layout_mode = 3

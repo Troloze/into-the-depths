@@ -40,16 +40,20 @@ var grip_integrity:float = 5000
 func _ready()->void:
 	process_priority = -1
 	get_node("AnimationPlayer").current_animation = "start"
+	PlayerStatus.watcher_startle.connect(_on_startle)
 
 func _init() -> void:
+	PlayerStatus.reset()
 	PlayerStatus.current_pos = 0
 	max_y = GlobalDefs.max_pos
 	min_y = GlobalDefs.min_pos
 
-
+func _on_startle():
+	start_falling(true)
 
 func _process(delta: float) -> void:
 	if cutscene:
+		PlayerStatus.current_pos = position.y
 		return
 	if end:
 		position += Vector2.DOWN * -1 * delta * speed
@@ -70,6 +74,10 @@ func _process(delta: float) -> void:
 	free_fall_handler(delta)
 	if flash:
 		PlayerStatus.toggle_flash()
+	if PlayerStatus.is_flashlight:
+		get_node("Fade3").visible = false
+	else: 
+		get_node("Fade3").visible = true
 	PlayerStatus.current_pos = position.y
 	PlayerStatus.is_falling = is_free_fall
 	#print(position.y)
@@ -92,11 +100,27 @@ func handle_movement_boundaries()->void:
 func free_fall_handler(delta)->void:
 	if not is_free_fall:
 		return
+	if no_grip:
+		curr_speed = min(terminal_velocity, curr_speed + gravity * delta)
+		position += Vector2.DOWN * delta * curr_speed
+		if (position.y >= max_y - boundary_threshold):
+			if curr_speed >= lethal_velocity:
+				GlobalDefs.death("Gravity")
+			curr_speed = 0
+			position.y = max_y - boundary_threshold
+			is_free_fall = false
+			is_startled = false
+			is_holding_on = false
+			drop_buffer = false
+			grip_buffer = false
+			on_grounded()
+		return
 	if Input.is_action_just_pressed("Drop") and not is_holding_on:
 		get_node("GripBufferTimer").start()
 		grip_buffer = true
 	if grip_buffer and (not is_startled) and can_grip:
 		is_holding_on = true
+		grip_buffer = false
 	if not is_holding_on:
 		curr_speed = min(terminal_velocity, curr_speed + gravity * delta)
 	else: 
@@ -110,7 +134,7 @@ func free_fall_handler(delta)->void:
 	position += Vector2.DOWN * delta * curr_speed
 	if (position.y >= max_y - boundary_threshold):
 		if curr_speed >= lethal_velocity:
-			GlobalDefs.death()
+			GlobalDefs.death("Gravity")
 		curr_speed = 0
 		position.y = max_y - boundary_threshold
 		is_free_fall = false
@@ -149,6 +173,7 @@ func _on_min_drop_timer_timeout() -> void:
 
 func _on_startle_timer_timeout() -> void:
 	is_startled = false
+	grip_buffer = true
 
 func _on_grip_buffer_timer_timeout() -> void:
 	grip_buffer = false
